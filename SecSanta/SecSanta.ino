@@ -49,10 +49,10 @@ void loop() {
 
   for (int i = 0; i < 2; i++) {
     if (MPR121.isNewTouch(i)) {
-      if(i == 0){
+      if(i == 0){ //if tummy rubbed
         Off();
         Lights = random(1,6);
-        switch (Lights){
+        switch (Lights){ //picks a random light pattern to start
           case 1:
             for(int ii = 3; ii < 9; ii++){
               digitalWrite(ii, HIGH);
@@ -122,7 +122,7 @@ void loop() {
             }
             break;
         }
-        delay(1000);
+        delay(1000); //Wait one second and pick light
         MPR121.updateAll();
         if(MPR121.isNewRelease(0)){
           Off();
@@ -150,9 +150,9 @@ void loop() {
           }
         }
       }
-      else if(i == 1){
+      else if(i == 1){ //if right leg rubbed
         Off();
-        for(int iv = 0; iv < 6; iv++){
+        for(int iv = 0; iv < 6; iv++){ //lights going off
           for(int iii = 0; iii < 4; iii++){
             digitalWrite(8-iv, HIGH);
             delay(250-(iv*40));
@@ -171,7 +171,7 @@ void loop() {
           }
           digitalWrite(8-iv, HIGH);
         }
-        digitalWrite(9, HIGH);
+        digitalWrite(9, HIGH); //NUT
         for(int v = 0; v < 40; v++){
           Off();
           delay(100);
@@ -190,7 +190,7 @@ void loop() {
   }
 }
 
-void Off(){
+void Off(){ //Set all lights off
   for(int i = 3; i < 9; i++){
     digitalWrite(i, LOW);
   }
